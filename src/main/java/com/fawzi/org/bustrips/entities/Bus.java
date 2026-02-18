@@ -15,13 +15,13 @@ public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "plate_number",nullable = false)
     private Long plateNumber;
 
     @Column(name = "bus_number",nullable = false)
-    private int busNumber;
+    private Integer busNumber;
 
     @Column(name = "description")
     private String description;
