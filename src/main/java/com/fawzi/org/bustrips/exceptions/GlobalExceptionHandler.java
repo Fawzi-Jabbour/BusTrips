@@ -64,6 +64,30 @@ public class GlobalExceptionHandler {
         Map<String,Object> body = new HashMap<>();
         body.put("timestamp",LocalDateTime.now());
         body.put("status", 404);
+        body.put("error","Not Found");
+        body.put("message",ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(body);
+
+    }
+    @ExceptionHandler(SeatNotFoundException.class)
+    public ResponseEntity<Object> handleSeatNotFoundException(SeatNotFoundException ex){
+        Map<String,Object> body = new HashMap<>();
+        body.put("timestamp",LocalDateTime.now());
+        body.put("status", 404);
+        body.put("error","Not Found");
+        body.put("message",ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(body);
+
+    }
+    @ExceptionHandler(DestinatonNotFoundException.class)
+    public ResponseEntity<Object> handleDestinationNotFoundException(DestinatonNotFoundException ex){
+        Map<String,Object> body = new HashMap<>();
+        body.put("timestamp",LocalDateTime.now());
+        body.put("status", 404);
         body.put("error","Not Found ");
         body.put("message",ex.getMessage());
         return ResponseEntity

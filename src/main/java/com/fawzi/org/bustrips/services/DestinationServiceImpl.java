@@ -3,6 +3,7 @@ package com.fawzi.org.bustrips.services;
 import com.fawzi.org.bustrips.dtos.DestinationCreateRequest;
 import com.fawzi.org.bustrips.dtos.DestinationDto;
 import com.fawzi.org.bustrips.entities.Destination;
+import com.fawzi.org.bustrips.exceptions.DestinatonNotFoundException;
 import com.fawzi.org.bustrips.exceptions.DuplicateDestinationCodeException;
 import com.fawzi.org.bustrips.mappers.DestinationMapper;
 import com.fawzi.org.bustrips.repositories.DestinationRepository;
@@ -48,8 +49,10 @@ public class DestinationServiceImpl implements DestinationService {
 
     @Override
     public void delete(Integer id) {
-        var destination = destinationRepository.findById(id).orElse(null);
-        destinationRepository.deleteById(id);
+        var destination = destinationRepository.findById(id)
+                .orElseThrow(() -> new DestinatonNotFoundException("Destinaton not found "));
+
+        destinationRepository.delete(destination);
 
     }
 

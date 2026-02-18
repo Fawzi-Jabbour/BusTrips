@@ -6,6 +6,7 @@ import com.fawzi.org.bustrips.entities.Bus;
 import com.fawzi.org.bustrips.entities.Seat;
 import com.fawzi.org.bustrips.exceptions.BusNotFoundException;
 import com.fawzi.org.bustrips.exceptions.DuplicateSeatException;
+import com.fawzi.org.bustrips.exceptions.SeatNotFoundException;
 import com.fawzi.org.bustrips.mappers.SeatMapper;
 import com.fawzi.org.bustrips.repositories.BusRepository;
 import com.fawzi.org.bustrips.repositories.SeatRepository;
@@ -46,7 +47,9 @@ public class SeatServiceImpl implements SeatService{
 
     @Override
     public void delete(Integer id) {
-        var seat = seatRepository.findById(id).orElse(null);
-        seatRepository.deleteById(id);
+        var seat = seatRepository.findById(id)
+                .orElseThrow(() -> new SeatNotFoundException("Seat not found "));
+
+        seatRepository.delete(seat);
     }
 }
