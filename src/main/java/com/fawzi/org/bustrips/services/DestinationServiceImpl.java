@@ -5,7 +5,6 @@ import com.fawzi.org.bustrips.dtos.DestinationDto;
 import com.fawzi.org.bustrips.entities.Destination;
 import com.fawzi.org.bustrips.exceptions.DestinatonNotFoundException;
 import com.fawzi.org.bustrips.exceptions.DuplicateDestinationCodeException;
-import com.fawzi.org.bustrips.exceptions.SeatNotFoundException;
 import com.fawzi.org.bustrips.mappers.DestinationMapper;
 import com.fawzi.org.bustrips.repositories.DestinationRepository;
 import lombok.RequiredArgsConstructor;
