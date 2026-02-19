@@ -10,4 +10,6 @@ public interface DestinationRepository extends JpaRepository<Destination,Integer
     Optional<Destination> findByCode(String code);
 
     boolean existsByCode(String code);
+
+    boolean existsByCodeAndIdNot(String code, Integer id);
 }

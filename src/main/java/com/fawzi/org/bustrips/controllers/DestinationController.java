@@ -2,6 +2,7 @@ package com.fawzi.org.bustrips.controllers;
 
 import com.fawzi.org.bustrips.dtos.DestinationCreateRequest;
 import com.fawzi.org.bustrips.dtos.DestinationDto;
+import com.fawzi.org.bustrips.dtos.DestinationUpdateRequest;
 import com.fawzi.org.bustrips.services.DestinationServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -47,4 +48,12 @@ public class DestinationController {
 
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}")
+    public DestinationDto update(
+            @PathVariable Integer id,
+            @Valid @RequestBody DestinationUpdateRequest request) {
+
+        return destinationService.update(id, request);
+    }
+
 }

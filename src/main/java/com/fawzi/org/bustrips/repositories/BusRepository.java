@@ -12,4 +12,6 @@ public interface BusRepository extends JpaRepository<Bus,Integer> {
     boolean existsByBusNumber(int busNumber);
 
     Optional<Bus> findByPlateNumber(Long plateNumber);
+
+    boolean existsByBusNumberAndIdNot(Integer busNumber, Integer id);
 }

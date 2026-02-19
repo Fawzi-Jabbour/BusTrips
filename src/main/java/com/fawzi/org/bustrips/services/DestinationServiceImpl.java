@@ -2,11 +2,13 @@ package com.fawzi.org.bustrips.services;
 
 import com.fawzi.org.bustrips.dtos.DestinationCreateRequest;
 import com.fawzi.org.bustrips.dtos.DestinationDto;
+import com.fawzi.org.bustrips.dtos.DestinationUpdateRequest;
 import com.fawzi.org.bustrips.entities.Destination;
 import com.fawzi.org.bustrips.exceptions.DestinatonNotFoundException;
 import com.fawzi.org.bustrips.exceptions.DuplicateDestinationCodeException;
 import com.fawzi.org.bustrips.mappers.DestinationMapper;
 import com.fawzi.org.bustrips.repositories.DestinationRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,22 @@ public class DestinationServiceImpl implements DestinationService {
                 .orElseThrow(() -> new DestinatonNotFoundException("Destinaton not found "));
 
         destinationRepository.delete(destination);
+
+    }
+
+    @Override
+    @Transactional
+    public DestinationDto update(Integer id, DestinationUpdateRequest request) {
+        Destination destination = destinationRepository.findById(id)
+                .orElseThrow(() -> new DestinatonNotFoundException(
+                        "Destination not found with id: "));
+        if (destinationRepository.existsByCodeAndIdNot(request.getCode(), id)) {
+            throw new DuplicateDestinationCodeException(
+                    "Destination code already exists: " + request.getCode());
+        }
+        destinationMapper.updateEntityFromDto(request, destination);
+
+        return destinationMapper.toDto(destination);
 
     }
 
