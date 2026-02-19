@@ -1,7 +1,6 @@
 package com.fawzi.org.bustrips.dtos;
 
 import com.fawzi.org.bustrips.entities.BusStatus;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
