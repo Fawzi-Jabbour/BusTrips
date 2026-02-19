@@ -95,5 +95,17 @@ public class GlobalExceptionHandler {
                 .body(body);
 
     }
+    @ExceptionHandler(TripNotFoundException.class)
+    public ResponseEntity<Object> handleTripNotFoundException(TripNotFoundException ex){
+        Map<String,Object> body = new HashMap<>();
+        body.put("timestamp",LocalDateTime.now());
+        body.put("status", 404);
+        body.put("error","Not Found ");
+        body.put("message",ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(body);
+
+    }
 }
 
