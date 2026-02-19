@@ -1,6 +1,5 @@
 package com.fawzi.org.bustrips.dtos;
 
-import com.fawzi.org.bustrips.entities.TripStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
