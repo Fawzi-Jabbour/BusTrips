@@ -48,7 +48,7 @@ public class DestinationController {
 
         return ResponseEntity.noContent().build();
     }
-    @PutMapping("/{id}")
+    @PatchMapping ("/{id}")
     public DestinationDto update(
             @PathVariable Integer id,
             @Valid @RequestBody DestinationUpdateRequest request) {

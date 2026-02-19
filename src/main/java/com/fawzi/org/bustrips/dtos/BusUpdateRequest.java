@@ -11,9 +11,9 @@ public class BusUpdateRequest {
     @Positive
     private Integer busNumber;
 
-    @NotNull
+
     private String description;
 
-    @NotNull
+
     private BusStatus status;
 }

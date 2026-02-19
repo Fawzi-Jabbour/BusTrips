@@ -2,6 +2,7 @@ package com.fawzi.org.bustrips.controllers;
 
 import com.fawzi.org.bustrips.dtos.BusCreateRequest;
 import com.fawzi.org.bustrips.dtos.BusDto;
+import com.fawzi.org.bustrips.dtos.BusUpdateRequest;
 import com.fawzi.org.bustrips.services.BusServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,12 @@ public class BusController {
     public ResponseEntity<List<BusDto>> getall(){
         var buses = busService.getAllBuses();
         return ResponseEntity.ok(buses);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<BusDto> update(@Valid @RequestBody BusUpdateRequest request,@PathVariable Integer id){
+        var busdto= busService.update(id,request);
+        return ResponseEntity.ok(busdto);
     }
 
 }
